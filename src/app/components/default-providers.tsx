@@ -4,6 +4,7 @@ import { ReactNode } from "react";
 import { ThemeProvider } from "styled-components";
 
 import GlobalStyle from "../../styles/globals";
+import { TasksProvider } from "@/context/tasksContext";
 
 interface DefaultProvidersProps {
   children: ReactNode;
@@ -17,8 +18,10 @@ const theme = {
 const DefaultProviders = ({ children }: DefaultProvidersProps) => {
   return (
     <ThemeProvider theme={theme}>
-      <GlobalStyle />
-      {children}
+      <TasksProvider>
+        <GlobalStyle />
+        {children}
+      </TasksProvider>
     </ThemeProvider>
   );
 };

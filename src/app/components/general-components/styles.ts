@@ -1,6 +1,10 @@
 import { lightThemeColors, primaryColors } from "@/helpers/colors";
 import styled from "styled-components";
 
+interface CheckboxInputProps {
+  isChecked?: boolean;
+}
+
 export const CheckboxInput = styled.input.attrs({
   type: "checkbox",
 })`

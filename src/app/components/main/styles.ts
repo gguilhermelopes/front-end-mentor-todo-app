@@ -29,6 +29,11 @@ export const ListElement = styled.li`
   }
 `;
 
+export const CheckedTask = styled.p`
+  text-decoration: line-through;
+  opacity: 0.3;
+`;
+
 export const ListStatus = styled.div`
   display: flex;
   align-items: center;

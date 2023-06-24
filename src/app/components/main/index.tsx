@@ -1,6 +1,7 @@
 "use client";
 import { GeneralContainer } from "@/styles/globals";
 import {
+  CheckedTask,
   ClearButton,
   DesktopFiltersList,
   DragAndDropInfo,
@@ -10,48 +11,50 @@ import {
   MainContent,
   MobileFiltersList,
 } from "./styles";
-import Checkbox from "../general-components/checkbox";
 import useMobile from "@/hooks/useMobile";
 import FilterButtons from "./filter-buttons";
-
-const tasks = [
-  {
-    task: "Complete online Javascript course",
-    isChecked: true,
-  },
-  {
-    task: "Jog around the park 3x",
-    isChecked: false,
-  },
-  {
-    task: "10 minute meditation",
-    isChecked: false,
-  },
-  {
-    task: "Read for 1 hour",
-    isChecked: false,
-  },
-  {
-    task: "Pick up groceries",
-    isChecked: false,
-  },
-  {
-    task: "Complete Todo App on Frontend Mentor",
-    isChecked: false,
-  },
-];
+import { CheckboxInput } from "../general-components/styles";
+import { ChangeEvent, useContext, useState } from "react";
+import { TasksContext } from "@/context/tasksContext";
 
 const Main = () => {
   const isMobile = useMobile("(max-width:768px)");
+  const { tasks, setTasks } = useContext(TasksContext);
+
+  const handleChange = (
+    index: number,
+    event: ChangeEvent<HTMLInputElement>
+  ) => {
+    const isChecked = event.target.checked;
+
+    setTasks((prevTasks) => {
+      const updatedTasks = [...prevTasks];
+
+      updatedTasks[index] = {
+        ...updatedTasks[index],
+        isChecked,
+      };
+
+      return updatedTasks;
+    });
+  };
+
   return (
     <MainContent>
       <GeneralContainer>
         <ListContainer>
           <ul>
-            {tasks.map((task) => (
-              <ListElement key={task.task}>
-                <Checkbox />
-                {task.task}
+            {tasks.map((task, index) => (
+              <ListElement key={index}>
+                <CheckboxInput
+                  checked={task.isChecked}
+                  onChange={(event) => handleChange(index, event)}
+                />
+                {task.isChecked ? (
+                  <CheckedTask>{task.task}</CheckedTask>
+                ) : (
+                  task.task
+                )}
               </ListElement>
             ))}
           </ul>
