@@ -1,5 +1,6 @@
 import "../styles/globals.css";
 import { Josefin_Sans } from "next/font/google";
+import DefaultProviders from "./components/default-providers";
 
 const josefinSans = Josefin_Sans({
   subsets: ["latin"],
@@ -18,8 +19,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={josefinSans.className}>{children}</body>
-    </html>
+    <DefaultProviders>
+      <html lang="en">
+        <body className={josefinSans.className}>{children}</body>
+      </html>
+    </DefaultProviders>
   );
 }

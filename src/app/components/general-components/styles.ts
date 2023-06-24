@@ -7,10 +7,11 @@ export const CheckboxInput = styled.input.attrs({
   display: flex;
   margin: 0 1rem;
   appearance: none;
-  width: 1.5rem;
-  height: 1.25rem;
+  width: 1.525rem;
+  height: 1.4rem;
   border-radius: 50%;
   border: 0.5px solid ${lightThemeColors.lightGrayishBlue};
+  cursor: pointer;
   outline: none;
 
   &:checked {
