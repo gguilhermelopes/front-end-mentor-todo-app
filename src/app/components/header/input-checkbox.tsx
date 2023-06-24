@@ -28,6 +28,7 @@ const InputCheckbox = () => {
         ...prevState,
       ]);
       setInput("");
+      setChecked(false);
     }
   };
 

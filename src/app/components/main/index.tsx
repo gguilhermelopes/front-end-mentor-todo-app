@@ -12,9 +12,16 @@ import {
 import useMobile from "@/hooks/useMobile";
 import FilterButtons from "./filter-buttons";
 import TaskList from "./task-list";
+import { useContext } from "react";
+import { TasksContext } from "@/context/tasksContext";
 
 const Main = () => {
   const isMobile = useMobile("(max-width:768px)");
+  const { tasks, setTasks } = useContext(TasksContext);
+
+  const handleClearCompletedClick = () => {
+    setTasks((prevTasks) => prevTasks.filter((task) => !task.isChecked));
+  };
 
   return (
     <MainContent>
@@ -22,13 +29,17 @@ const Main = () => {
         <ListContainer>
           <TaskList />
           <ListStatus>
-            <p>5 items left</p>
+            <p>
+              {tasks.length} item{tasks.length !== 1 && "s"} left
+            </p>
             {!isMobile && (
               <DesktopFiltersList>
                 <FilterButtons />
               </DesktopFiltersList>
             )}
-            <ClearButton>Clear Completed</ClearButton>
+            <ClearButton onClick={handleClearCompletedClick}>
+              Clear Completed
+            </ClearButton>
           </ListStatus>
         </ListContainer>
         {isMobile && (
