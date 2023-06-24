@@ -16,16 +16,35 @@ export const ListContainer = styled.div`
 
 export const ListElement = styled.li`
   display: flex;
+  flex: 1;
   align-items: center;
   gap: 1.5rem;
   padding: 1rem 0 1rem 1rem;
   font-size: 0.825rem;
   font-weight: 500;
   border-bottom: 1px solid ${lightThemeColors.veryLightGrayishBlue};
+  cursor: pointer;
+
+  svg {
+    display: block;
+    margin-left: auto;
+    margin-right: 1rem;
+    transition: 0.3s;
+  }
 
   @media (min-width: ${(props) => props.theme.desktopBreakpoint}) {
     padding: 1.25rem 0 1.25rem 1.25rem;
     font-size: 1rem;
+    svg {
+      opacity: 0;
+      margin-right: 1.25rem;
+    }
+
+    &:hover {
+      svg {
+        opacity: 1;
+      }
+    }
   }
 `;
 

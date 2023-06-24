@@ -16,6 +16,7 @@ import FilterButtons from "./filter-buttons";
 import { CheckboxInput } from "../general-components/styles";
 import { ChangeEvent, useContext, useState } from "react";
 import { TasksContext } from "@/context/tasksContext";
+import CrossIcon from "./icon-cross";
 
 const Main = () => {
   const isMobile = useMobile("(max-width:768px)");
@@ -39,6 +40,10 @@ const Main = () => {
     });
   };
 
+  const handleCloseClick = (index: number) => {
+    setTasks((prevTasks) => prevTasks.filter((task, i) => index !== i));
+  };
+
   return (
     <MainContent>
       <GeneralContainer>
@@ -55,6 +60,7 @@ const Main = () => {
                 ) : (
                   task.task
                 )}
+                <CrossIcon onClick={() => handleCloseClick(index)} />
               </ListElement>
             ))}
           </ul>
