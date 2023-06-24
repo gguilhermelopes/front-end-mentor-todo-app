@@ -1,4 +1,3 @@
-import "../styles/globals.css";
 import { Josefin_Sans } from "next/font/google";
 import DefaultProviders from "./components/default-providers";
 

@@ -5,14 +5,16 @@ export const CheckboxInput = styled.input.attrs({
   type: "checkbox",
 })`
   display: flex;
-  margin: 0 1rem;
+  justify-content: center;
+  align-items: center;
   appearance: none;
-  width: 1.525rem;
-  height: 1.4rem;
-  border-radius: 50%;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 9999px;
   border: 0.5px solid ${lightThemeColors.lightGrayishBlue};
   cursor: pointer;
   outline: none;
+  user-select: none;
 
   &:checked {
     background: ${primaryColors.checkBackground};

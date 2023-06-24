@@ -2,18 +2,13 @@
 
 import MoonIcon from "./moon-icon";
 import InputCheckbox from "./input-checkbox";
-import {
-  HeaderWrapper,
-  Logo,
-  MainHeader,
-  TitleWrapper,
-  ToggleThemeButton,
-} from "./styles";
+import { Logo, MainHeader, TitleWrapper, ToggleThemeButton } from "./styles";
+import { GeneralContainer } from "@/styles/globals";
 
 const Header = () => {
   return (
     <MainHeader>
-      <HeaderWrapper>
+      <GeneralContainer>
         <TitleWrapper>
           <Logo>Todo</Logo>
           <ToggleThemeButton>
@@ -21,7 +16,7 @@ const Header = () => {
           </ToggleThemeButton>
         </TitleWrapper>
         <InputCheckbox />
-      </HeaderWrapper>
+      </GeneralContainer>
     </MainHeader>
   );
 };

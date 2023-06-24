@@ -14,16 +14,6 @@ export const MainHeader = styled.header`
   }
 `;
 
-export const HeaderWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-
-  @media (min-width: ${(props) => props.theme.desktopBreakpoint}) {
-    max-width: 35rem;
-    margin: 0 auto;
-  }
-`;
-
 export const TitleWrapper = styled.div`
   display: flex;
   align-items: center;
@@ -44,23 +34,28 @@ export const Logo = styled.h1`
 `;
 
 export const ToggleThemeButton = styled.button`
-  fill: ${lightThemeColors.veryLightGray};
   display: block;
   border: none;
   background: none;
   cursor: pointer;
+
+  svg path {
+    fill: ${lightThemeColors.veryLightGray};
+  }
 `;
 
 export const InputWrappers = styled.div`
   display: flex;
   align-items: center;
+  gap: 1.5rem;
+  padding-left: 1rem;
   background-color: ${lightThemeColors.veryLightGray};
   border-radius: 0.25rem;
   overflow: hidden;
 `;
 
 export const NewTaskInput = styled.input`
-  width: 100%;
+  width: 75%;
   padding: 1rem 0;
   border: none;
   outline: none;
