@@ -28,7 +28,6 @@ export const ListElement = styled.li`
   svg {
     display: block;
     margin-left: auto;
-    margin-right: 1rem;
     transition: 0.3s;
   }
 
@@ -37,7 +36,6 @@ export const ListElement = styled.li`
     font-size: 1rem;
     > svg {
       opacity: 0;
-      margin-right: 1.25rem;
     }
 
     &:hover {
