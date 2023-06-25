@@ -19,7 +19,7 @@ export const ListElement = styled.li`
   flex: 1;
   align-items: center;
   gap: 1.5rem;
-  padding: 1rem 0 1rem 1rem;
+  padding: 1rem;
   font-size: 0.825rem;
   font-weight: 500;
   border-bottom: 1px solid ${lightThemeColors.veryLightGrayishBlue};
@@ -33,9 +33,9 @@ export const ListElement = styled.li`
   }
 
   @media (min-width: ${(props) => props.theme.desktopBreakpoint}) {
-    padding: 1.25rem 0 1.25rem 1.25rem;
+    padding: 1.25rem;
     font-size: 1rem;
-    svg {
+    > svg {
       opacity: 0;
       margin-right: 1.25rem;
     }
@@ -104,4 +104,12 @@ export const DragAndDropInfo = styled.div`
   align-items: center;
   justify-content: center;
   color: ${lightThemeColors.darkGrayishBlue};
+`;
+
+export const LoadingState = styled.div`
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `;

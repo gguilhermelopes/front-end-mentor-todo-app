@@ -22,32 +22,7 @@ const TasksContext = createContext<TasksContextProps>({
 });
 
 const TasksProvider = ({ children }: { children: ReactNode }) => {
-  const [tasks, setTasks] = useState<Task[]>([
-    {
-      task: "Complete online Javascript course",
-      isChecked: true,
-    },
-    {
-      task: "Jog around the park 3x",
-      isChecked: false,
-    },
-    {
-      task: "10 minute meditation",
-      isChecked: false,
-    },
-    {
-      task: "Read for 1 hour",
-      isChecked: false,
-    },
-    {
-      task: "Pick up groceries",
-      isChecked: false,
-    },
-    {
-      task: "Complete Todo App on Frontend Mentor",
-      isChecked: false,
-    },
-  ]);
+  const [tasks, setTasks] = useState<Task[]>([]);
 
   return (
     <TasksContext.Provider value={{ tasks, setTasks }}>
