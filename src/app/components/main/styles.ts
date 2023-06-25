@@ -21,7 +21,7 @@ export const ListElement = styled.li`
   padding: 1rem;
   font-size: 0.825rem;
   font-weight: 500;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid ${({ theme }) => theme.secondaryHover};
   cursor: pointer;
   color: ${({ theme }) => theme.primaryText};
 
@@ -66,6 +66,10 @@ export const ClearButton = styled.button`
   font-family: inherit;
   color: inherit;
   cursor: pointer;
+
+  &:hover {
+    color: ${({ theme }) => theme.primaryHover};
+  }
 `;
 
 export const DesktopFiltersList = styled.nav`
@@ -93,6 +97,10 @@ export const FilterButton = styled.button`
   font-size: 0.9rem;
   cursor: pointer;
   color: ${({ theme }) => theme.secondaryText};
+
+  &:hover {
+    color: ${({ theme }) => theme.primaryHover};
+  }
 `;
 
 export const DragAndDropInfo = styled.div`

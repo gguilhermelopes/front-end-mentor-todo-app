@@ -17,7 +17,6 @@ import { DarkThemeContext } from "@/context/themeContext";
 
 const TaskList = () => {
   const { setTasks } = useContext(TasksContext);
-  const { isDarkTheme } = useContext(DarkThemeContext);
   const { tasks, loading, fetchTasks, error } = useTasks();
 
   const handleOnDragEnd: OnDragEndResponder = (result) => {

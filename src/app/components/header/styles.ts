@@ -39,6 +39,11 @@ export const ToggleThemeButton = styled.button`
   border: none;
   background: none;
   cursor: pointer;
+  transition: 0.3s;
+
+  &:hover {
+    transform: scale(1.25);
+  }
 
   @keyframes animateIcon {
     to {
