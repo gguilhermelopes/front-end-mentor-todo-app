@@ -13,11 +13,11 @@ import { ChangeEvent, useContext, useEffect } from "react";
 import { TasksContext } from "@/context/tasksContext";
 import useTasks from "@/hooks/useTasks";
 import { CircularProgress } from "@mui/joy";
-import { DarkThemeContext } from "@/context/themeContext";
+import axios from "axios";
 
 const TaskList = () => {
   const { setTasks } = useContext(TasksContext);
-  const { tasks, loading, fetchTasks, error } = useTasks();
+  const { tasks, loading, fetchTasks, error, deleteTask } = useTasks();
 
   const handleOnDragEnd: OnDragEndResponder = (result) => {
     if (!result.destination) return;
@@ -45,12 +45,14 @@ const TaskList = () => {
     });
   };
 
-  const handleDeleteClick = (index: number) => {
-    setTasks((prevTasks) => prevTasks.filter((task, i) => index !== i));
+  const fetchData = async () => fetchTasks();
+
+  const handleDeleteClick = async (id: number) => {
+    const response = await deleteTask(id);
+    if (response?.status === 200) fetchData();
   };
 
   useEffect(() => {
-    const fetchData = async () => fetchTasks();
     fetchData();
   }, []);
 
@@ -73,15 +75,6 @@ const TaskList = () => {
                       ref={provided.innerRef}
                     >
                       <ListElement>
-                        {loading && (
-                          <LoadingState>
-                            <CircularProgress
-                              color="info"
-                              variant="plain"
-                              size="sm"
-                            />
-                          </LoadingState>
-                        )}
                         <CheckboxInput
                           checked={task.isChecked}
                           onChange={(event) => handleChange(index, event)}
@@ -92,7 +85,7 @@ const TaskList = () => {
                           task.task
                         )}
 
-                        <CrossIcon onClick={() => handleDeleteClick(index)} />
+                        <CrossIcon onClick={() => handleDeleteClick(task.id)} />
                       </ListElement>
                     </li>
                   )}

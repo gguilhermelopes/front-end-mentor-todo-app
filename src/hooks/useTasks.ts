@@ -18,8 +18,20 @@ const useTasks = () => {
       setError(error.response.data.errorMessage);
     }
   };
+
+  const deleteTask = async (id: number) => {
+    setLoading(true);
+    try {
+      const response = await axios.delete(`api/task/${id}`);
+      return response;
+    } catch (error: any) {
+      setLoading(false);
+      setError(error.response.data.errorMessage);
+    }
+  };
   return {
     fetchTasks,
+    deleteTask,
     loading,
     tasks,
     error,
