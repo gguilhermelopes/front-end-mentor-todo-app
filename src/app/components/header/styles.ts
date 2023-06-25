@@ -1,16 +1,17 @@
-import { lightThemeColors } from "@/helpers/colors";
+import light from "@/themes/light";
 import styled from "styled-components";
 
 export const MainHeader = styled.header`
   padding: 3rem 1rem;
-  background: url("./images/bg-mobile-light.jpg") no-repeat center;
+  background: url(${({ theme }) => theme.mobileHeaderBackground}) no-repeat
+    center;
   background-size: cover;
 
   @media (min-width: ${({ theme }) => theme.desktopBreakpoint}) {
     padding: 4rem 0 5rem 0;
   }
   @media (min-width: ${({ theme }) => theme.backgroundBreakpoint}) {
-    background-image: url("./images/bg-desktop-light.jpg");
+    background-image: url(${({ theme }) => theme.desktopHeaderBackground});
   }
 `;
 
@@ -24,9 +25,9 @@ export const TitleWrapper = styled.div`
 export const Logo = styled.h1`
   font-size: 1.375rem;
   font-weight: 700;
-  color: ${lightThemeColors.veryLightGray};
   letter-spacing: 0.5rem;
   text-transform: uppercase;
+  color: ${light.secondaryBackground};
 
   @media (min-width: ${(props) => props.theme.desktopBreakpoint}) {
     font-size: 2rem;
@@ -39,8 +40,21 @@ export const ToggleThemeButton = styled.button`
   background: none;
   cursor: pointer;
 
+  @keyframes animateIcon {
+    to {
+      opacity: 1;
+      transform: initial;
+    }
+  }
+
+  > svg {
+    opacity: 0;
+    transform: scale(0);
+    animation: animateIcon 0.3s forwards;
+  }
+
   svg path {
-    fill: ${lightThemeColors.veryLightGray};
+    fill: ${light.secondaryBackground};
   }
 `;
 
@@ -49,7 +63,7 @@ export const InputWrappers = styled.div`
   align-items: center;
   gap: 1.5rem;
   padding-left: 1rem;
-  background-color: ${lightThemeColors.veryLightGray};
+  background-color: ${({ theme }) => theme.secondaryBackground};
   border-radius: 0.25rem;
   overflow: hidden;
 `;
@@ -62,10 +76,11 @@ export const NewTaskInput = styled.input`
   font-family: inherit;
   font-size: 0.825rem;
   font-weight: 500;
-  color: ${lightThemeColors.veryDarkGrayishBlue};
+  color: ${({ theme }) => theme.primaryText};
+  background-color: ${({ theme }) => theme.secondaryBackground};
 
   &::placeholder {
-    color: ${lightThemeColors.darkGrayishBlue};
+    color: ${({ theme }) => theme.secondaryText};
   }
   @media (min-width: ${(props) => props.theme.desktopBreakpoint}) {
     padding: 1.25rem 0;

@@ -13,9 +13,11 @@ import { ChangeEvent, useContext, useEffect } from "react";
 import { TasksContext } from "@/context/tasksContext";
 import useTasks from "@/hooks/useTasks";
 import { CircularProgress } from "@mui/joy";
+import { DarkThemeContext } from "@/context/themeContext";
 
 const TaskList = () => {
   const { setTasks } = useContext(TasksContext);
+  const { isDarkTheme } = useContext(DarkThemeContext);
   const { tasks, loading, fetchTasks, error } = useTasks();
 
   const handleOnDragEnd: OnDragEndResponder = (result) => {

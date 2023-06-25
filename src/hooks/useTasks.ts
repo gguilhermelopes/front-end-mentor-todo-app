@@ -2,11 +2,6 @@ import { TasksContext } from "@/context/tasksContext";
 import axios from "axios";
 import { useContext, useState } from "react";
 
-interface Task {
-  task: string;
-  isChecked: boolean;
-}
-
 const useTasks = () => {
   const { tasks, setTasks } = useContext(TasksContext);
   const [loading, setLoading] = useState(false);

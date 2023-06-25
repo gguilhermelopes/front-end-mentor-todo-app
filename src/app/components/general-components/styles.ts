@@ -1,9 +1,4 @@
-import { lightThemeColors, primaryColors } from "@/helpers/colors";
 import styled from "styled-components";
-
-interface CheckboxInputProps {
-  isChecked?: boolean;
-}
 
 export const CheckboxInput = styled.input.attrs({
   type: "checkbox",
@@ -15,14 +10,14 @@ export const CheckboxInput = styled.input.attrs({
   width: 1.5rem;
   height: 1.5rem;
   border-radius: 9999px;
-  border: 0.5px solid ${lightThemeColors.lightGrayishBlue};
+  border: 0.5px solid ${({ theme }) => theme.secondaryText};
   cursor: pointer;
   outline: none;
   user-select: none;
 
   &:checked {
-    background: ${primaryColors.checkBackground};
-    border-color: ${lightThemeColors.veryLightGray};
+    background: ${({ theme }) => theme.checkBackground};
+    border: none;
     &::after {
       content: "";
       width: 100%;
