@@ -4,11 +4,12 @@ import { ChangeEvent, KeyboardEvent, useContext, useState } from "react";
 import { CheckboxInput } from "../general-components/styles";
 import { InputWrappers, NewTaskInput } from "./styles";
 import useTasks from "@/hooks/useTasks";
+import { CircularProgress } from "@mui/joy";
 
 const InputCheckbox = () => {
   const [checked, setChecked] = useState(false);
   const [input, setInput] = useState("");
-  const { createTask, fetchTasks } = useTasks();
+  const { createTask, fetchTasks, loading } = useTasks();
 
   const handleCheckboxChange = (event: ChangeEvent<HTMLInputElement>) => {
     setChecked(event.target.checked);
@@ -36,11 +37,12 @@ const InputCheckbox = () => {
       />
       <NewTaskInput
         id="newTask"
-        placeholder="Create a new todo..."
+        placeholder="Create a new todo and press enter..."
         value={input}
         onChange={handleInputChange}
         onKeyDown={handleKeyDown}
       />
+      {loading && <CircularProgress color="info" size="sm" />}
     </InputWrappers>
   );
 };
