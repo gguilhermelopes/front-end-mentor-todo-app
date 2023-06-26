@@ -6,7 +6,9 @@ const prisma = new PrismaClient();
 export async function GET() {
   const tasks = await prisma.task.findMany({
     where: {
-      isChecked: { equals: false },
+      isChecked: {
+        equals: false,
+      },
     },
     orderBy: [
       {
