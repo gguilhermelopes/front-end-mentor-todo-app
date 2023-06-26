@@ -71,7 +71,11 @@ const TaskList = () => {
           <ul {...provided.droppableProps} ref={provided.innerRef}>
             {tasks &&
               tasks.map((task, index) => (
-                <Draggable key={task.id} draggableId={task.task} index={index}>
+                <Draggable
+                  key={task.id}
+                  draggableId={task.task + task.id}
+                  index={index}
+                >
                   {(provided) => (
                     <li
                       {...provided.draggableProps}

@@ -39,7 +39,7 @@ const useTasks = () => {
     }
   };
 
-  const deletedClearTasks = async () => {
+  const deleteClearTasks = async () => {
     setLoading(true);
     try {
       const response = await axios.delete(`api/tasks`);
@@ -83,7 +83,7 @@ const useTasks = () => {
     fetchCompletedTasks,
     fetchActiveTasks,
     deleteTask,
-    deletedClearTasks,
+    deleteClearTasks,
     createTask,
     updateTask,
     loading,

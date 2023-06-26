@@ -23,7 +23,9 @@ export const ListElement = styled.li`
   background-color: ${({ theme }) => theme.secondaryBackground};
   font-size: 0.825rem;
   font-weight: 500;
+  border-radius: 0.25rem;
   border-bottom: 1px solid ${({ theme }) => theme.secondaryHover};
+  overflow: hidden;
   cursor: pointer;
   color: ${({ theme }) => theme.primaryText};
 
@@ -60,6 +62,9 @@ export const ListStatus = styled.div`
   padding: 1rem;
   font-size: 0.825rem;
   color: ${({ theme }) => theme.secondaryText};
+  p {
+    width: 15ch;
+  }
 `;
 
 export const ClearButton = styled.button`
@@ -68,6 +73,7 @@ export const ClearButton = styled.button`
   font-family: inherit;
   color: inherit;
   cursor: pointer;
+  width: 14ch;
 
   &:hover {
     color: ${({ theme }) => theme.primaryHover};
@@ -103,6 +109,10 @@ export const FilterButton = styled.button`
   &:hover {
     color: ${({ theme }) => theme.primaryHover};
   }
+`;
+
+export const FilterButtonHighlighted = styled(FilterButton)`
+  color: ${({ theme }) => theme.primaryHover};
 `;
 
 export const DragAndDropInfo = styled.div`

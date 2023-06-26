@@ -20,12 +20,12 @@ import { CircularProgress } from "@mui/joy";
 const Main = () => {
   const isMobile = useMobile("(max-width:768px)");
   const { tasks } = useContext(TasksContext);
-  const { deletedClearTasks, fetchTasks } = useTasks();
+  const { deleteClearTasks, fetchTasks } = useTasks();
   const { error, loading } = useTasks();
 
   const handleClearCompletedClick = async () => {
-    await deletedClearTasks();
-    fetchTasks();
+    await deleteClearTasks();
+    await fetchTasks();
   };
 
   return (
@@ -43,7 +43,11 @@ const Main = () => {
               </DesktopFiltersList>
             )}
             <ClearButton onClick={handleClearCompletedClick}>
-              Clear completed
+              {loading ? (
+                <CircularProgress color="info" size="sm" />
+              ) : (
+                "Clear completed"
+              )}
             </ClearButton>
           </ListStatus>
         </ListContainer>
