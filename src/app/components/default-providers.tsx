@@ -1,10 +1,8 @@
 "use client";
 
 import { ReactNode } from "react";
-
-import GlobalStyle from "../../styles/globals";
 import { TasksProvider } from "@/context/tasksContext";
-import { DarkThemeContext, DarkThemeProvider } from "@/context/themeContext";
+import { DarkThemeProvider } from "@/context/themeContext";
 
 interface DefaultProvidersProps {
   children: ReactNode;
@@ -13,10 +11,7 @@ interface DefaultProvidersProps {
 const DefaultProviders = ({ children }: DefaultProvidersProps) => {
   return (
     <TasksProvider>
-      <DarkThemeProvider>
-        <GlobalStyle />
-        {children}
-      </DarkThemeProvider>
+      <DarkThemeProvider>{children}</DarkThemeProvider>
     </TasksProvider>
   );
 };
