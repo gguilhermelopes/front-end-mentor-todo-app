@@ -13,11 +13,10 @@ import { ChangeEvent, useContext, useEffect } from "react";
 import { TasksContext } from "@/context/tasksContext";
 import useTasks from "@/hooks/useTasks";
 import { CircularProgress } from "@mui/joy";
-import axios from "axios";
 
 const TaskList = () => {
   const { setTasks } = useContext(TasksContext);
-  const { tasks, loading, fetchTasks, error, deleteTask } = useTasks();
+  const { tasks, loading, fetchTasks, deleteTask, updateTask } = useTasks();
 
   const handleOnDragEnd: OnDragEndResponder = (result) => {
     if (!result.destination) return;
@@ -27,11 +26,13 @@ const TaskList = () => {
     setTasks(items);
   };
 
-  const handleChange = (
+  const handleChange = async (
+    id: number,
     index: number,
     event: ChangeEvent<HTMLInputElement>
   ) => {
     const isChecked = event.target.checked;
+    await updateTask(id, isChecked);
 
     setTasks((prevTasks) => {
       const updatedTasks = [...prevTasks];
@@ -56,6 +57,13 @@ const TaskList = () => {
     fetchData();
   }, []);
 
+  if (loading)
+    return (
+      <LoadingState>
+        <CircularProgress color="info" />
+      </LoadingState>
+    );
+
   return (
     <DragDropContext onDragEnd={handleOnDragEnd}>
       <Droppable droppableId="dropList">
@@ -63,11 +71,7 @@ const TaskList = () => {
           <ul {...provided.droppableProps} ref={provided.innerRef}>
             {tasks &&
               tasks.map((task, index) => (
-                <Draggable
-                  key={task.task}
-                  draggableId={task.task}
-                  index={index}
-                >
+                <Draggable key={task.id} draggableId={task.task} index={index}>
                   {(provided) => (
                     <li
                       {...provided.draggableProps}
@@ -77,7 +81,9 @@ const TaskList = () => {
                       <ListElement>
                         <CheckboxInput
                           checked={task.isChecked}
-                          onChange={(event) => handleChange(index, event)}
+                          onChange={(event) =>
+                            handleChange(task.id, index, event)
+                          }
                         />
                         {task.isChecked ? (
                           <CheckedTask>{task.task}</CheckedTask>

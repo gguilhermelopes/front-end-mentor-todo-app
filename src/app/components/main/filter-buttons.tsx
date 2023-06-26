@@ -1,11 +1,17 @@
+"use client";
+import useTasks from "@/hooks/useTasks";
 import { FilterButton } from "./styles";
 
 const FilterButtons = () => {
+  const { fetchCompletedTasks, fetchTasks, fetchActiveTasks } = useTasks();
+
+  const handleClick = async () => fetchTasks();
+
   return (
     <>
-      <FilterButton>All</FilterButton>
-      <FilterButton>Active</FilterButton>
-      <FilterButton>Completed</FilterButton>
+      <FilterButton onClick={handleClick}>All</FilterButton>
+      <FilterButton onClick={fetchActiveTasks}>Active</FilterButton>
+      <FilterButton onClick={fetchCompletedTasks}>Completed</FilterButton>
     </>
   );
 };

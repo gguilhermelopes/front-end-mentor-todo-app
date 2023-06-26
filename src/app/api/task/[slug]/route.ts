@@ -13,7 +13,6 @@ export async function DELETE(
       id: +slug,
     },
   });
-  console.log(slug);
 
   if (!task) {
     return NextResponse.json(
@@ -25,4 +24,22 @@ export async function DELETE(
   return NextResponse.json({
     response: "Task deleted!",
   });
+}
+
+export async function PATCH(
+  req: NextRequest,
+  { params }: { params: { slug: number } }
+) {
+  const { slug } = params;
+  const { isChecked } = await req.json();
+  const task = await prisma.task.update({
+    where: {
+      id: +slug,
+    },
+    data: {
+      isChecked,
+    },
+  });
+
+  return NextResponse.json({ task });
 }

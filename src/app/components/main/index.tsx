@@ -14,13 +14,17 @@ import FilterButtons from "./filter-buttons";
 import TaskList from "./task-list";
 import { useContext } from "react";
 import { TasksContext } from "@/context/tasksContext";
+import useTasks from "@/hooks/useTasks";
 
 const Main = () => {
   const isMobile = useMobile("(max-width:768px)");
-  const { tasks, setTasks } = useContext(TasksContext);
+  const { tasks } = useContext(TasksContext);
+  const { deletedClearTasks, fetchTasks } = useTasks();
+  const { error } = useTasks();
 
-  const handleClearCompletedClick = () => {
-    setTasks((prevTasks) => prevTasks.filter((task) => !task.isChecked));
+  const handleClearCompletedClick = async () => {
+    await deletedClearTasks();
+    fetchTasks();
   };
 
   return (
@@ -48,7 +52,11 @@ const Main = () => {
           </MobileFiltersList>
         )}
         <DragAndDropInfo>
-          <p>Drag and drop to reorder list</p>
+          <p>
+            {error
+              ? "An error ocurred, please try again later."
+              : "Drag and drop to reorder list"}
+          </p>
         </DragAndDropInfo>
       </GeneralContainer>
     </MainContent>
