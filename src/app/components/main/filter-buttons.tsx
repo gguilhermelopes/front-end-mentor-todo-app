@@ -7,13 +7,15 @@ const FilterButtons = () => {
   const { fetchCompletedTasks, fetchTasks, fetchActiveTasks, loading } =
     useTasks();
 
-  const handleClick = async () => fetchTasks();
+  const handleAllClick = async () => await fetchTasks();
+  const handleActiveClick = async () => await fetchActiveTasks();
+  const handleCompletedClick = async () => await fetchCompletedTasks();
 
   return (
     <>
-      <FilterButton onClick={handleClick}>All</FilterButton>
-      <FilterButton onClick={fetchActiveTasks}>Active</FilterButton>
-      <FilterButton onClick={fetchCompletedTasks}>Completed</FilterButton>
+      <FilterButton onClick={handleAllClick}>All</FilterButton>
+      <FilterButton onClick={handleActiveClick}>Active</FilterButton>
+      <FilterButton onClick={handleCompletedClick}>Completed</FilterButton>
       {loading && <CircularProgress color="info" size="sm" />}
     </>
   );
