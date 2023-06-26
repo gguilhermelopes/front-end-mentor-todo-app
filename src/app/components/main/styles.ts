@@ -10,6 +10,7 @@ export const ListContainer = styled.div`
   background-color: ${({ theme }) => theme.secondaryBackground};
   margin-top: -1.825rem;
   border-radius: 0.25rem;
+  overflow: hidden;
   box-shadow: 0px 0px 20px 0px rgba(72, 75, 106, 0.05);
 `;
 
