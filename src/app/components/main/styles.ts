@@ -19,6 +19,7 @@ export const ListElement = styled.li`
   align-items: center;
   gap: 1.5rem;
   padding: 1rem;
+  background-color: ${({ theme }) => theme.secondaryBackground};
   font-size: 0.825rem;
   font-weight: 500;
   border-bottom: 1px solid ${({ theme }) => theme.secondaryHover};

@@ -15,12 +15,13 @@ import TaskList from "./task-list";
 import { useContext } from "react";
 import { TasksContext } from "@/context/tasksContext";
 import useTasks from "@/hooks/useTasks";
+import { CircularProgress } from "@mui/joy";
 
 const Main = () => {
   const isMobile = useMobile("(max-width:768px)");
   const { tasks } = useContext(TasksContext);
   const { deletedClearTasks, fetchTasks } = useTasks();
-  const { error } = useTasks();
+  const { error, loading } = useTasks();
 
   const handleClearCompletedClick = async () => {
     await deletedClearTasks();
@@ -42,7 +43,7 @@ const Main = () => {
               </DesktopFiltersList>
             )}
             <ClearButton onClick={handleClearCompletedClick}>
-              Clear Completed
+              Clear completed
             </ClearButton>
           </ListStatus>
         </ListContainer>

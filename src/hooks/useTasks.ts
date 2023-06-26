@@ -67,7 +67,6 @@ const useTasks = () => {
   };
 
   const updateTask = async (id: number, isChecked: boolean) => {
-    setLoading(true);
     try {
       const response = await axios.patch(`api/task/${id}`, {
         isChecked,

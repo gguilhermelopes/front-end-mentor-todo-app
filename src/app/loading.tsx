@@ -1,11 +1,5 @@
-import Header from "./components/header";
-
 const loading = () => {
-  return (
-    <div>
-      <Header />
-    </div>
-  );
+  return;
 };
 
 export default loading;

@@ -32,7 +32,6 @@ const TaskList = () => {
     event: ChangeEvent<HTMLInputElement>
   ) => {
     const isChecked = event.target.checked;
-    await updateTask(id, isChecked);
 
     setTasks((prevTasks) => {
       const updatedTasks = [...prevTasks];
@@ -44,6 +43,7 @@ const TaskList = () => {
 
       return updatedTasks;
     });
+    await updateTask(id, isChecked);
   };
 
   const fetchData = async () => fetchTasks();
