@@ -5,7 +5,14 @@ const prisma = new PrismaClient();
 
 export async function GET() {
   const tasks = await prisma.task.findMany({
-    where: { isChecked: true },
+    where: {
+      isChecked: { equals: true },
+    },
+    orderBy: [
+      {
+        id: "desc",
+      },
+    ],
   });
 
   return NextResponse.json({ tasks });
