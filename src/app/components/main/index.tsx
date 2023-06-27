@@ -28,6 +28,8 @@ const Main = () => {
     await fetchTasks();
   };
 
+  const itemsLeft = tasks.filter((task) => !task.isChecked).length;
+
   return (
     <MainContent>
       <GeneralContainer>
@@ -35,7 +37,7 @@ const Main = () => {
           <TaskList />
           <ListStatus>
             <p>
-              {tasks.length} item{tasks.length !== 1 && "s"} left
+              {itemsLeft} item{itemsLeft !== 1 && "s"} left
             </p>
             {!isMobile && (
               <DesktopFiltersList>
