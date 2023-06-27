@@ -83,7 +83,7 @@ const TaskList = () => {
                       <CheckboxInput
                         checked={task.isChecked}
                         onChange={(event) =>
-                          handleChange(task.id, index, event)
+                          handleChange(task.id as number, index, event)
                         }
                       />
                       {task.isChecked ? (
@@ -93,7 +93,9 @@ const TaskList = () => {
                       )}
 
                       <CrossIcon
-                        onClick={() => handleDeleteClick(task.id, index)}
+                        onClick={() =>
+                          handleDeleteClick(task.id as number, index)
+                        }
                       />
                     </ListElement>
                   )}

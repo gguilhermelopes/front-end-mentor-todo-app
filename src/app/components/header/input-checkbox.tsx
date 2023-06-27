@@ -22,11 +22,9 @@ const InputCheckbox = () => {
   };
 
   const handleKeyDown = async (event: KeyboardEvent<HTMLInputElement>) => {
-    const newId = tasks[0] && tasks[0].id + 1;
-
     if (event.key === "Enter" && input) {
       setTasks((prevState) => [
-        { task: input, isChecked: checked, id: newId },
+        { task: input, isChecked: checked },
         ...prevState,
       ]);
       await createTask(input, checked);
