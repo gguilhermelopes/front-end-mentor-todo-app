@@ -5,10 +5,12 @@ import { CheckboxInput } from "../general-components/styles";
 import { InputWrappers, NewTaskInput } from "./styles";
 import useTasks from "@/hooks/useTasks";
 import { CircularProgress } from "@mui/joy";
+import { TasksContext } from "@/context/tasksContext";
 
 const InputCheckbox = () => {
   const [checked, setChecked] = useState(false);
   const [input, setInput] = useState("");
+  const { tasks, setTasks } = useContext(TasksContext);
   const { createTask, fetchTasks, loading } = useTasks();
 
   const handleCheckboxChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -21,10 +23,13 @@ const InputCheckbox = () => {
 
   const handleKeyDown = async (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter" && input) {
+      setTasks((prevState) => [
+        { task: input, isChecked: checked },
+        ...prevState,
+      ]);
       await createTask(input, checked);
       setInput("");
       setChecked(false);
-      await fetchTasks();
     }
   };
 

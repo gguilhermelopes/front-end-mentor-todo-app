@@ -7,39 +7,55 @@ import { TasksContext } from "@/context/tasksContext";
 
 const FilterButtons = () => {
   const { fetchTasks, loading } = useTasks();
-  const { setTasks } = useContext(TasksContext);
   const [highlight, setHighlight] = useState("All");
+  const { setTasks, tasks } = useContext(TasksContext);
 
-  const handleAllClick = async () => {
-    await fetchTasks();
-    setHighlight("All");
-  };
-  const handleFilterClick = async (isActive: boolean) => {
-    await fetchTasks();
-    setTasks((prevState) =>
-      prevState.filter((task) => (isActive ? !task.isChecked : task.isChecked))
-    );
-    isActive ? setHighlight("Active") : setHighlight("Completed");
-  };
   const filters = [
-    { label: "All", onClick: handleAllClick },
-    { label: "Active", onClick: () => handleFilterClick(true) },
-    { label: "Completed", onClick: () => handleFilterClick(false) },
+    { label: "All" },
+    { label: "Active" },
+    { label: "Completed" },
   ];
 
-  const handleHighlight = (label: string, onClick: () => void) => {
+  const handleFilters = async (label: String) => {
+    switch (label) {
+      case "All":
+        setHighlight("All");
+        await fetchTasks();
+        break;
+      case "Active":
+        setHighlight("Active");
+        await fetchTasks();
+        setTasks((prevState) => prevState.filter((task) => !task.isChecked));
+        break;
+      case "Completed":
+        setHighlight("Completed");
+        await fetchTasks();
+        setTasks((prevState) => prevState.filter((task) => task.isChecked));
+        break;
+    }
+  };
+
+  const handleHighlight = (label: string) => {
     if (label === highlight)
       return (
-        <FilterButtonHighlighted onClick={onClick}>
+        <FilterButtonHighlighted
+          onClick={() => handleFilters(label)}
+          key={label}
+        >
           {label}
         </FilterButtonHighlighted>
       );
-    else return <FilterButton onClick={onClick}>{label}</FilterButton>;
+    else
+      return (
+        <FilterButton onClick={() => handleFilters(label)} key={label}>
+          {label}
+        </FilterButton>
+      );
   };
 
   return (
     <>
-      {filters.map((task) => handleHighlight(task.label, task.onClick))}
+      {filters.map((task) => handleHighlight(task.label))}
       {loading && <CircularProgress color="info" size="sm" />}
     </>
   );

@@ -28,13 +28,9 @@ const useTasks = () => {
   };
 
   const deleteTask = async (id: number) => {
-    setLoading(true);
     try {
-      const response = await axios.delete(`api/task/${id}`);
-      setLoading(false);
-      return response;
+      await axios.delete(`api/task/${id}`);
     } catch (error: any) {
-      setLoading(false);
       setError(true);
     }
   };
@@ -52,16 +48,12 @@ const useTasks = () => {
   };
 
   const createTask = async (newTask: string, isChecked: boolean) => {
-    setLoading(true);
     try {
-      const response = await axios.post("api/tasks", {
+      await axios.post("api/tasks", {
         newTask,
         isChecked,
       });
-      setLoading(false);
-      return response;
     } catch (error: any) {
-      setLoading(false);
       setError(true);
     }
   };

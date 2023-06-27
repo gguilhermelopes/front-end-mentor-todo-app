@@ -6,7 +6,6 @@ import Main from "./components/main";
 import { DarkThemeContext } from "@/context/themeContext";
 import { ThemeProvider } from "styled-components";
 import themes from "@/themes";
-import Head from "next/head";
 
 export default function Home() {
   const { theme } = useContext(DarkThemeContext);

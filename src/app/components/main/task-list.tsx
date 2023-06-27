@@ -46,15 +46,13 @@ const TaskList = () => {
     await updateTask(id, isChecked);
   };
 
-  const fetchData = async () => fetchTasks();
-
   const handleDeleteClick = async (id: number) => {
-    const response = await deleteTask(id);
-    if (response?.status === 200) fetchData();
+    setTasks((prevState) => prevState.filter((task) => task.id !== id));
+    await deleteTask(id);
   };
 
   useEffect(() => {
-    fetchData();
+    fetchTasks();
   }, []);
 
   if (loading)
@@ -77,27 +75,27 @@ const TaskList = () => {
                   index={index}
                 >
                   {(provided) => (
-                    <li
+                    <ListElement
                       {...provided.draggableProps}
                       {...provided.dragHandleProps}
                       ref={provided.innerRef}
                     >
-                      <ListElement>
-                        <CheckboxInput
-                          checked={task.isChecked}
-                          onChange={(event) =>
-                            handleChange(task.id, index, event)
-                          }
-                        />
-                        {task.isChecked ? (
-                          <CheckedTask>{task.task}</CheckedTask>
-                        ) : (
-                          task.task
-                        )}
+                      <CheckboxInput
+                        checked={task.isChecked}
+                        onChange={(event) =>
+                          handleChange(task.id as number, index, event)
+                        }
+                      />
+                      {task.isChecked ? (
+                        <CheckedTask>{task.task}</CheckedTask>
+                      ) : (
+                        task.task
+                      )}
 
-                        <CrossIcon onClick={() => handleDeleteClick(task.id)} />
-                      </ListElement>
-                    </li>
+                      <CrossIcon
+                        onClick={() => handleDeleteClick(task.id as number)}
+                      />
+                    </ListElement>
                   )}
                 </Draggable>
               ))}

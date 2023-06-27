@@ -1,3 +1,4 @@
+import useTasks from "@/hooks/useTasks";
 import {
   Dispatch,
   ReactNode,
@@ -7,7 +8,7 @@ import {
 } from "react";
 
 interface Task {
-  id: number;
+  id?: number;
   task: string;
   isChecked: boolean;
 }
