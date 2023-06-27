@@ -32,7 +32,7 @@ const InputCheckbox = () => {
       await createTask(input, checked);
       setInput("");
       setChecked(false);
-      if (!tasks.length) fetchTasks();
+      fetchTasks();
     }
   };
 
