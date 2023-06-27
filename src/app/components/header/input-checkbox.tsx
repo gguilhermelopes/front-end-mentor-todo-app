@@ -11,7 +11,7 @@ const InputCheckbox = () => {
   const [checked, setChecked] = useState(false);
   const [input, setInput] = useState("");
   const { tasks, setTasks } = useContext(TasksContext);
-  const { createTask, fetchTasks, loading } = useTasks();
+  const { createTask, loading, fetchTasks } = useTasks();
 
   const handleCheckboxChange = (event: ChangeEvent<HTMLInputElement>) => {
     setChecked(event.target.checked);
@@ -22,14 +22,17 @@ const InputCheckbox = () => {
   };
 
   const handleKeyDown = async (event: KeyboardEvent<HTMLInputElement>) => {
+    const newId = tasks[0] && tasks[0].id + 1;
+
     if (event.key === "Enter" && input) {
       setTasks((prevState) => [
-        { task: input, isChecked: checked },
+        { task: input, isChecked: checked, id: newId },
         ...prevState,
       ]);
       await createTask(input, checked);
       setInput("");
       setChecked(false);
+      if (!tasks.length) fetchTasks();
     }
   };
 

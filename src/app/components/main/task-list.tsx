@@ -46,8 +46,8 @@ const TaskList = () => {
     await updateTask(id, isChecked);
   };
 
-  const handleDeleteClick = async (id: number) => {
-    setTasks((prevState) => prevState.filter((task) => task.id !== id));
+  const handleDeleteClick = async (id: number, index: number) => {
+    setTasks((prevState) => prevState.filter((task, i) => index !== i));
     await deleteTask(id);
   };
 
@@ -83,7 +83,7 @@ const TaskList = () => {
                       <CheckboxInput
                         checked={task.isChecked}
                         onChange={(event) =>
-                          handleChange(task.id as number, index, event)
+                          handleChange(task.id, index, event)
                         }
                       />
                       {task.isChecked ? (
@@ -93,7 +93,7 @@ const TaskList = () => {
                       )}
 
                       <CrossIcon
-                        onClick={() => handleDeleteClick(task.id as number)}
+                        onClick={() => handleDeleteClick(task.id, index)}
                       />
                     </ListElement>
                   )}
