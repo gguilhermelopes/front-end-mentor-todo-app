@@ -7,7 +7,7 @@ import {
 } from "react";
 
 interface Task {
-  id: number;
+  id?: number;
   task: string;
   isChecked: boolean;
 }
